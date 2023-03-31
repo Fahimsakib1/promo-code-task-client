@@ -11,7 +11,6 @@ import EditPromoCodeModal from './EditPromoCodeModal';
 const Home = () => {
 
 
-
     //For Modal
     const [newPromoCodeInfo, setNewPromoCodeInfo] = useState(null);
 
@@ -24,7 +23,7 @@ const Home = () => {
             discount: data.discount
         }
 
-        fetch('http://localhost:5000/PromoCodes', {
+        fetch('https://promo-code-server-eight.vercel.app/PromoCodes', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(promoCodeInfo)
@@ -47,9 +46,8 @@ const Home = () => {
                 }
             })
 
-
-
     }
+
 
 
     const handleApplyPromoCode = (event) => {
@@ -57,7 +55,7 @@ const Home = () => {
         console.log(event.target.applyPromoCode.value)
         const promoCode = event.target.applyPromoCode.value;
 
-        fetch(`http://localhost:5000/PromoCodes/${promoCode}`)
+        fetch(`https://promo-code-server-eight.vercel.app/PromoCodes/${promoCode}`)
             .then(res => res.json())
             .then(data => {
                 console.log("Discount Data From Backend", data)
@@ -84,10 +82,9 @@ const Home = () => {
     }
 
 
-
     const { data: allPromoCodes = [], refetch, isLoading } = useQuery({
         queryKey: ['allPromoCodes'],
-        queryFn: () => fetch('http://localhost:5000/AllPromoCodes')
+        queryFn: () => fetch('https://promo-code-server-eight.vercel.app/AllPromoCodes')
             .then(res => res.json())
     })
 
@@ -99,7 +96,7 @@ const Home = () => {
     //Delete Promo Code
     const handleDeletePromoCode = (id, name) => {
         console.log("Promo Code Id", id + " and Promo Code Name", name);
-        fetch(`http://localhost:5000/deletePromoCode/${id}`, {
+        fetch(`https://promo-code-server-eight.vercel.app/deletePromoCode/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -122,8 +119,6 @@ const Home = () => {
 
 
     const [promoCodeData, setPromoCodeData] = useState({})
-    const [promoCodeData1, setPromoCodeData1] = useState('')
-
 
 
     //Edit Promo Code
@@ -141,7 +136,7 @@ const Home = () => {
         console.log("Updated Promo Code ", updatedPromoCodeInfo)
 
 
-        fetch(`http://localhost:5000/updatePromoCode/${_id}`, {
+        fetch(`https://promo-code-server-eight.vercel.app/updatePromoCode/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -172,19 +167,9 @@ const Home = () => {
     }
 
 
-
-
-
-
-
-
     if (isLoading) {
         return <div className="h-28 w-28 border-8 border-dashed rounded-full animate-spin border-blue-600 mx-auto mt-64"></div>
     }
-
-
-
-
 
 
 
@@ -233,9 +218,7 @@ const Home = () => {
                             </label>
                             <input type="text" name='applyPromoCode' placeholder="Enter Promo Code" className="input input-bordered w-full" required />
                         </div>
-
                         <button className='btn btn-primary w-full mt-6'>Apply Promo Code</button>
-
                     </form>
 
                 </div>

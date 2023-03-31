@@ -26,12 +26,11 @@ const EditPromoCodeModal = ({ closeModal, handleEditPromoCode, newPromoCodeInfo 
 
                         </div>
 
-
                         <div className="form-control w-full mb-1">
                             <label className="label">
                                 <span className="label-text font-semibold">Discount (%)</span>
                             </label>
-
+                            
                             <input defaultValue={discount ? discount : ''} type="number" {...register("discount", { required: "Discount is Required" })}
                                 placeholder="Enter Discount" className="input input-bordered w-full" />
 
@@ -42,41 +41,6 @@ const EditPromoCodeModal = ({ closeModal, handleEditPromoCode, newPromoCodeInfo 
                             htmlFor="update-promoCode-modal"
                             className='btn btn-primary w-full text-white uppercase py-3 rounded-md mt-4 mb-2' />
                     </form>
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    {/* <label
-                        onClick={() => handleEditPromoCode(_id, promo_code, discount)}
-                        htmlFor="update-promoCode-modal" className="btn btn-success w-full mt-4  border-0 text-white">Update
-                    </label> */}
-
 
                 </div>
             </div>
